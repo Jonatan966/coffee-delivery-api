@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import express from 'express';
-import { createConnection } from './database';
+import { createConnection } from './shared/database';
 
 createConnection().then(() => console.log('[database] connected successful'));
 
