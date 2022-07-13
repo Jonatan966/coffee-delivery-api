@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres
+    container_name: local_db_coffee
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=coffee
+      - POSTGRES_PASSWORD=delivery
+      - POSTGRES_DB=coffee_delivery
