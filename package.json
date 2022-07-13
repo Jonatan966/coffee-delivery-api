@@ -2,7 +2,8 @@
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "node dist/server.js",
-    "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts"
+    "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js -d src/shared/infra/typeorm/index.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
@@ -24,6 +25,9 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.7"
   }
 }
