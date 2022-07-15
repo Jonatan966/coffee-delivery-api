@@ -29,15 +29,15 @@ class Coffee {
   @JoinTable({
     name: 'coffee_categories',
     joinColumn: {
-      name: 'category_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
       name: 'coffee_id',
       referencedColumnName: 'id',
     },
+    inverseJoinColumn: {
+      name: 'category_id',
+      referencedColumnName: 'id',
+    },
   })
-  coffees: Category[];
+  categories: Category[];
 
   @CreateDateColumn()
   created_at: Date;
