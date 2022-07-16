@@ -1,4 +1,6 @@
 import 'reflect-metadata';
+import './shared/container';
+
 import express from 'express';
 import { createConnection } from './shared/database';
 
