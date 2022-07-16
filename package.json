@@ -3,7 +3,7 @@
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "node dist/server.js",
     "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "typeorm": "ts-node-dev -r dotenv/config ./node_modules/typeorm/cli.js",
     "typeorm:migration-run": "yarn typeorm migration:run -d ./src/shared/database/index.ts"
   },
   "devDependencies": {
