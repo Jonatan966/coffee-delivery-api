@@ -1,5 +1,7 @@
 import { container } from 'tsyringe';
 
+import './providers';
+
 import { CategoriesRepository } from '../../modules/coffees/infra/typeorm/repositories/CategoriesRepository';
 import { CoffeesRepository } from '../../modules/coffees/infra/typeorm/repositories/CoffesRepository';
 import { ICategoryRepository } from '../../modules/coffees/repositories/ICategoryRepository';
