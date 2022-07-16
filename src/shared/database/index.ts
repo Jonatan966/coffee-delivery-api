@@ -5,6 +5,8 @@ import { Category } from '../../modules/coffees/infra/typeorm/entities/Category'
 import { CreateCoffeesTable1657675660015 } from './migrations/1657675660015-CreateCoffeesTable';
 import { CreateCategoriesTable1657844097712 } from './migrations/1657844097712-CreateCategoriesTable';
 import { CreateCoffeeCategoriesTable1657844513864 } from './migrations/1657844513864-CreateCoffeeCategoriesTable';
+import { CreateOrdersTable1657999339706 } from './migrations/1657999339706-CreateOrdersTable';
+import { Order } from '../../modules/orders/infra/typeorm/entities/Order';
 
 const dataSource = new DataSource({
   type: 'postgres',
@@ -13,8 +15,9 @@ const dataSource = new DataSource({
     CreateCoffeesTable1657675660015,
     CreateCategoriesTable1657844097712,
     CreateCoffeeCategoriesTable1657844513864,
+    CreateOrdersTable1657999339706,
   ],
-  entities: [Coffee, Category],
+  entities: [Coffee, Category, Order],
 });
 
 export function createConnection(): Promise<DataSource> {
