@@ -1,4 +1,12 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
+import { OrderItem } from './OrderItem';
 
 enum PaymentType {
   CREDIT_CARD = 'credit_card',
@@ -14,6 +22,9 @@ class Order {
   @Column()
   address: string;
 
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.order, { eager: true })
+  order_items: OrderItem[];
+
   @Column()
   total_price: number;
 
@@ -22,6 +33,12 @@ class Order {
 
   @CreateDateColumn()
   created_at: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuidv4();
+    }
+  }
 }
 
 export { Order, PaymentType };
