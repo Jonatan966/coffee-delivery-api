@@ -30,9 +30,6 @@ class OrderItem {
 
   @Column()
   partial_price: number;
-
-  @CreateDateColumn()
-  created_at: Date;
 }
 
 export { OrderItem };
