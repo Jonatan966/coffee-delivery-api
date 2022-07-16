@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../shared/errors/AppError';
 
 import { Coffee } from '../../infra/typeorm/entities/Coffee';
 import { CategoriesRepository } from '../../infra/typeorm/repositories/CategoriesRepository';
@@ -23,7 +24,7 @@ class CreateCoffeeUseCase {
     const categories = await this.categoriesRepository.findByIds(categories_id);
 
     if (!categories.length) {
-      throw new Error('Categories does not exists');
+      throw new AppError('Categories does not exists');
     }
 
     const createdCoffee = await this.coffeesRepository.create({
