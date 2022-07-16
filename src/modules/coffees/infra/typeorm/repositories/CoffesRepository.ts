@@ -12,12 +12,19 @@ class CoffeesRepository implements ICoffeeRepository {
     this.repository = dataSource.getRepository(Coffee);
   }
 
-  async create({ name, categories, price }: ICreateCoffeeDTO): Promise<Coffee> {
+  async create({
+    id,
+    name,
+    categories,
+    price,
+    image_url = '',
+  }: ICreateCoffeeDTO): Promise<Coffee> {
     const coffeeObject = this.repository.create({
+      id,
       name,
       price,
       categories,
-      image_url: '',
+      image_url,
     });
 
     const createdCoffee = await this.repository.save(coffeeObject);
