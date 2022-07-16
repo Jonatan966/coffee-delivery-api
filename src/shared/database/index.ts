@@ -13,7 +13,7 @@ import { ChangePriceTypes1658013052510 } from './migrations/1658013052510-Change
 
 const dataSource = new DataSource({
   type: 'postgres',
-  url: 'postgresql://coffee:delivery@localhost/coffee_delivery',
+  url: process.env.DATABASE_URL,
   migrations: [
     CreateCoffeesTable1657675660015,
     CreateCategoriesTable1657844097712,
