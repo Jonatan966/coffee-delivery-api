@@ -18,6 +18,10 @@ class UpdateOrderStatusUseCase {
   async execute({ order_id, new_status }: IRequest): Promise<Order> {
     const foundedOrder = await this.ordersRepository.findById(order_id);
 
+    if (!foundedOrder) {
+      throw new AppError('Order does not exists');
+    }
+
     if (
       [OrderStatus.CANCELED, OrderStatus.DELIVERED].includes(
         foundedOrder.status
