@@ -10,6 +10,8 @@ import { IOrdersRepository } from '../../modules/orders/repositories/IOrdersRepo
 import { OrdersRepository } from '../../modules/orders/infra/typeorm/repositories/OrdersRepository';
 import { IOrderItemsRepository } from '../../modules/orders/repositories/IOrderItemsRepository';
 import { OrderItemsRepository } from '../../modules/orders/infra/typeorm/repositories/OrderItemsRepository';
+import { IUsersRepository } from '../../modules/accounts/repositories/IUsersRepository';
+import { UsersRepository } from '../../modules/accounts/infra/typeorm/repositories/UsersRepository';
 
 container.registerSingleton<ICoffeesRepository>(
   'CoffeesRepository',
@@ -29,4 +31,9 @@ container.registerSingleton<IOrdersRepository>(
 container.registerSingleton<IOrderItemsRepository>(
   'OrderItemsRepository',
   OrderItemsRepository
+);
+
+container.registerSingleton<IUsersRepository>(
+  'UsersRepository',
+  UsersRepository
 );
