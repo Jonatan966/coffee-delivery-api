@@ -1,10 +1,10 @@
 import { Repository } from 'typeorm';
 import dataSource from '../../../../../shared/database';
 import { ICreateOrderDTO } from '../../../dtos/ICreateOrderDTO';
-import { IOrderRepository } from '../../../repositories/IOrderRepository';
+import { IOrdersRepository } from '../../../repositories/IOrdersRepository';
 import { Order } from '../entities/Order';
 
-class OrdersRepository implements IOrderRepository {
+class OrdersRepository implements IOrdersRepository {
   private repository: Repository<Order>;
 
   constructor() {

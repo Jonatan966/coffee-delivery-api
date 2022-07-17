@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../shared/errors/AppError';
 import { Order, OrderStatus } from '../../infra/typeorm/entities/Order';
-import { IOrderRepository } from '../../repositories/IOrderRepository';
+import { IOrdersRepository } from '../../repositories/IOrdersRepository';
 
 interface IRequest {
   order_id: string;
@@ -12,7 +12,7 @@ interface IRequest {
 class UpdateOrderStatusUseCase {
   constructor(
     @inject('OrdersRepository')
-    private ordersRepository: IOrderRepository
+    private ordersRepository: IOrdersRepository
   ) {}
 
   async execute({ order_id, new_status }: IRequest): Promise<Order> {

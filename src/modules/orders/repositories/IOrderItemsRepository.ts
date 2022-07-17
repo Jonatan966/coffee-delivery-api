@@ -1,8 +1,8 @@
 import { ICreateOrderItemsDTO } from '../dtos/ICreateOrderItemsDTO';
 import { OrderItem } from '../infra/typeorm/entities/OrderItem';
 
-interface IOrderItemRepository {
+interface IOrderItemsRepository {
   createMany(orderItem: ICreateOrderItemsDTO): Promise<OrderItem[]>;
 }
 
-export { IOrderItemRepository };
+export { IOrderItemsRepository };

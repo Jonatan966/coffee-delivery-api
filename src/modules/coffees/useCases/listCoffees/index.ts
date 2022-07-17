@@ -1,12 +1,12 @@
 import { inject, injectable } from 'tsyringe';
 import { Coffee } from '../../infra/typeorm/entities/Coffee';
-import { ICoffeeRepository } from '../../repositories/ICoffeeRepository';
+import { ICoffeesRepository } from '../../repositories/ICoffeesRepository';
 
 @injectable()
 class ListCoffeesUseCase {
   constructor(
     @inject('CoffeesRepository')
-    private coffeesRepository: ICoffeeRepository
+    private coffeesRepository: ICoffeesRepository
   ) {}
 
   async execute(): Promise<Coffee[]> {

@@ -1,13 +1,13 @@
 import { inject, injectable } from 'tsyringe';
 
 import { Category } from '../../infra/typeorm/entities/Category';
-import { ICategoryRepository } from '../../repositories/ICategoryRepository';
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 @injectable()
 class ListCategoriesUseCase {
   constructor(
     @inject('CategoriesRepository')
-    private categoriesRepository: ICategoryRepository
+    private categoriesRepository: ICategoriesRepository
   ) {}
 
   async execute(): Promise<Category[]> {

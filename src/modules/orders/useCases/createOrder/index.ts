@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import { ICoffeeRepository } from '../../../coffees/repositories/ICoffeeRepository';
+import { ICoffeesRepository } from '../../../coffees/repositories/ICoffeesRepository';
 import { Order, PaymentType } from '../../infra/typeorm/entities/Order';
-import { IOrderItemRepository } from '../../repositories/IOrderItemRepository';
-import { IOrderRepository } from '../../repositories/IOrderRepository';
+import { IOrderItemsRepository } from '../../repositories/IOrderItemsRepository';
+import { IOrdersRepository } from '../../repositories/IOrdersRepository';
 
 interface IRequest {
   address: string;
@@ -17,11 +17,11 @@ interface IRequest {
 class CreateOrderUseCase {
   constructor(
     @inject('OrdersRepository')
-    private orderRepository: IOrderRepository,
+    private orderRepository: IOrdersRepository,
     @inject('OrderItemsRepository')
-    private orderItemRepository: IOrderItemRepository,
+    private orderItemRepository: IOrderItemsRepository,
     @inject('CoffeesRepository')
-    private coffeeRepository: ICoffeeRepository
+    private coffeeRepository: ICoffeesRepository
   ) {}
 
   async execute({ address, payment_type, items }: IRequest): Promise<Order> {

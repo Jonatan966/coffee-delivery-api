@@ -1,12 +1,12 @@
 import { inject, injectable } from 'tsyringe';
 import { Order } from '../../infra/typeorm/entities/Order';
-import { IOrderRepository } from '../../repositories/IOrderRepository';
+import { IOrdersRepository } from '../../repositories/IOrdersRepository';
 
 @injectable()
 class ShowOrderUseCase {
   constructor(
     @inject('OrdersRepository')
-    private orderRepository: IOrderRepository
+    private orderRepository: IOrdersRepository
   ) {}
 
   async execute(order_id: string): Promise<Order> {

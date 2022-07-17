@@ -2,10 +2,10 @@ import { In, Repository } from 'typeorm';
 
 import dataSource from '../../../../../shared/database';
 import { ICreateCoffeeDTO } from '../../../dtos/ICreateCoffeeDTO';
-import { ICoffeeRepository } from '../../../repositories/ICoffeeRepository';
+import { ICoffeesRepository } from '../../../repositories/ICoffeesRepository';
 import { Coffee } from '../entities/Coffee';
 
-class CoffeesRepository implements ICoffeeRepository {
+class CoffeesRepository implements ICoffeesRepository {
   private repository: Repository<Coffee>;
 
   constructor() {

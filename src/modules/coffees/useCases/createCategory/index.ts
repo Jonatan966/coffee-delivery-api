@@ -3,13 +3,13 @@ import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../shared/errors/AppError';
 import { ICreateCategoryDTO } from '../../dtos/ICreateCategoryDTO';
 import { Category } from '../../infra/typeorm/entities/Category';
-import { ICategoryRepository } from '../../repositories/ICategoryRepository';
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 @injectable()
 class CreateCategoryUseCase {
   constructor(
     @inject('CategoriesRepository')
-    private categoriesRepository: ICategoryRepository
+    private categoriesRepository: ICategoriesRepository
   ) {}
 
   async execute({ name }: ICreateCategoryDTO): Promise<Category> {

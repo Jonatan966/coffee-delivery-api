@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { IStorageProvider } from '../../../../shared/container/providers/StorageProvider/IStorageProvider';
 import { AppError } from '../../../../shared/errors/AppError';
-import { ICoffeeRepository } from '../../repositories/ICoffeeRepository';
+import { ICoffeesRepository } from '../../repositories/ICoffeesRepository';
 
 interface IRequest {
   image_name: string;
@@ -12,7 +12,7 @@ interface IRequest {
 class UploadCoffeeImageUseCase {
   constructor(
     @inject('CoffeesRepository')
-    private coffeesRepository: ICoffeeRepository,
+    private coffeesRepository: ICoffeesRepository,
     @inject('StorageProvider')
     private storageProvider: IStorageProvider
   ) {}

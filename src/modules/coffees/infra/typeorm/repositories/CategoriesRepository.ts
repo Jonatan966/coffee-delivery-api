@@ -1,10 +1,10 @@
 import { In, Repository } from 'typeorm';
 import dataSource from '../../../../../shared/database';
 import { ICreateCategoryDTO } from '../../../dtos/ICreateCategoryDTO';
-import { ICategoryRepository } from '../../../repositories/ICategoryRepository';
+import { ICategoriesRepository } from '../../../repositories/ICategoriesRepository';
 import { Category } from '../entities/Category';
 
-class CategoriesRepository implements ICategoryRepository {
+class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
 
   constructor() {

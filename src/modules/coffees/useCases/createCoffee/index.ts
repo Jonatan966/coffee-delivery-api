@@ -2,8 +2,8 @@ import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../shared/errors/AppError';
 
 import { Coffee } from '../../infra/typeorm/entities/Coffee';
-import { ICategoryRepository } from '../../repositories/ICategoryRepository';
-import { ICoffeeRepository } from '../../repositories/ICoffeeRepository';
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
+import { ICoffeesRepository } from '../../repositories/ICoffeesRepository';
 
 interface IRequest {
   name: string;
@@ -15,9 +15,9 @@ interface IRequest {
 class CreateCoffeeUseCase {
   constructor(
     @inject('CoffeesRepository')
-    private coffeesRepository: ICoffeeRepository,
+    private coffeesRepository: ICoffeesRepository,
     @inject('CategoriesRepository')
-    private categoriesRepository: ICategoryRepository
+    private categoriesRepository: ICategoriesRepository
   ) {}
 
   async execute({ name, price, categories_id }: IRequest): Promise<Coffee> {
