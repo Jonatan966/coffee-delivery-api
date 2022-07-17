@@ -31,14 +31,19 @@ class OrdersRepository implements IOrderRepository {
     return orderObject;
   }
 
-  async list(): Promise<Order[]> {
-    const orders = await this.repository.find();
+  async list(withItems = false): Promise<Order[]> {
+    const orders = await this.repository.find({
+      relations: withItems && ['order_items'],
+    });
 
     return orders;
   }
 
   async findById(id: string): Promise<Order | null> {
-    const foundedOrder = await this.repository.findOneBy({ id });
+    const foundedOrder = await this.repository.findOne({
+      relations: ['order_items'],
+      where: { id },
+    });
 
     return foundedOrder;
   }

@@ -31,7 +31,7 @@ class Order {
   @Column()
   address: string;
 
-  @OneToMany(() => OrderItem, (orderItem) => orderItem.order, { eager: true })
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
   order_items: OrderItem[];
 
   @Column()
