@@ -1,0 +1,591 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Coffee Delivery API",
+    "description": "Coffee Delivery API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "jonatanfrederico@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Coffee",
+      "description": "Coffee related operations"
+    },
+    {
+      "name": "Category",
+      "description": "Category related operations"
+    },
+    {
+      "name": "Account",
+      "description": "Account related operations"
+    },
+    {
+      "name": "Order",
+      "description": "Order related operations"
+    }
+  ],
+  "paths": {
+    "/categories": {
+      "get": {
+        "tags": ["Category"],
+        "summary": "Get all categories",
+        "description": "Get all categories",
+        "responses": {
+          "200": {
+            "description": "A list of categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categories"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Category"],
+        "summary": "Create a new category",
+        "description": "Create a new category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Tradicional"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Category to create",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Category created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/coffees": {
+      "get": {
+        "tags": ["Coffee"],
+        "summary": "Get all coffees",
+        "description": "Get all coffees",
+        "responses": {
+          "200": {
+            "description": "A list of coffees",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coffees"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Coffee"],
+        "summary": "Create a new coffee",
+        "description": "Create a new coffee",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Café Americano"
+                  },
+                  "price": {
+                    "type": "number",
+                    "example": "1.00"
+                  },
+                  "categories_id": {
+                    "type": "string",
+                    "example": "445fc605-8f33-41d3-8e07-c64fef0b8047"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Coffee to create",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Coffee created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coffee"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/coffees/{coffee_id}/image": {
+      "patch": {
+        "tags": ["Coffee"],
+        "summary": "Upload a coffee image",
+        "description": "Upload a coffee image",
+        "parameters": [
+          {
+            "name": "coffee_id",
+            "in": "path",
+            "description": "Coffee ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "coffee_image": {
+                    "description": "Coffee image",
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": ["coffee_image"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Coffee image uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coffee"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Create a new order",
+        "description": "Create a new order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "example": "Rua das Couves, 123"
+                  },
+                  "payment_type": {
+                    "type": "string",
+                    "example": "credit_card",
+                    "enum": ["credit_card", "debit_card", "cash"]
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "coffee_id": {
+                          "type": "string",
+                          "example": "445fc605-8f33-41d3-8e07-c64fef0b8047"
+                        },
+                        "amount": {
+                          "type": "number",
+                          "example": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "Order to create",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Order created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get all orders",
+        "description": "Get all orders",
+        "responses": {
+          "200": {
+            "description": "A list of orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{order_id}": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get an order",
+        "description": "Get an order",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "Order ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{order_id}/status": {
+      "patch": {
+        "tags": ["Order"],
+        "summary": "Update an order status",
+        "description": "Update an order status",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "Order ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "delivered",
+                    "enum": [
+                      "created",
+                      "preparing",
+                      "delivering",
+                      "delivered",
+                      "canceled"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": "Order status to update",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Order status updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": ["Account"],
+        "summary": "Create a new user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@doe.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "123456"
+                  }
+                }
+              }
+            }
+          },
+          "description": "User to create",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/authenticate": {
+      "post": {
+        "tags": ["Account"],
+        "summary": "Authenticate a user",
+        "description": "Authenticate a user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "john@doe.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "123456"
+                  }
+                }
+              }
+            }
+          },
+          "description": "User to authenticate",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "54daf298-e181-40ff-98e6-f6ddaf697468"
+          },
+          "name": {
+            "type": "string",
+            "example": "Coffee"
+          }
+        }
+      },
+      "Categories": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Category"
+        }
+      },
+      "Coffee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "54daf298-e181-40ff-98e6-f6ddaf697468"
+          },
+          "name": {
+            "type": "string",
+            "example": "Café Americano"
+          },
+          "price": {
+            "type": "number",
+            "example": "1.00"
+          },
+          "image_url": {
+            "type": "string",
+            "example": "coffee-image.png"
+          },
+          "categories": {
+            "$ref": "#/components/schemas/Categories"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2019-01-01T00:00:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2019-01-01T00:00:00.000Z"
+          }
+        }
+      },
+      "Coffees": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Coffee"
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "54daf298-e181-40ff-98e6-f6ddaf697468"
+          },
+          "address": {
+            "type": "string",
+            "example": "Rua das Couves, 123"
+          },
+          "payment_type": {
+            "type": "string",
+            "example": "credit_card",
+            "enum": ["credit_card", "debit_card", "cash"]
+          },
+          "status": {
+            "type": "string",
+            "example": "created",
+            "enum": [
+              "created",
+              "preparing",
+              "delivering",
+              "delivered",
+              "canceled"
+            ]
+          },
+          "order_items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "coffee": {
+                  "$ref": "#/components/schemas/Coffee"
+                },
+                "amount": {
+                  "type": "number",
+                  "example": 1
+                },
+                "partial_price": {
+                  "type": "number",
+                  "example": 100
+                }
+              }
+            }
+          },
+          "total_price": {
+            "type": "number",
+            "example": 100
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2019-01-01T00:00:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2019-01-01T00:00:00.000Z"
+          }
+        }
+      },
+      "Orders": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Order"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "54daf298-e181-40ff-98e6-f6ddaf697468"
+          },
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "john@doe.com"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2019-01-01T00:00:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2019-01-01T00:00:00.000Z"
+          }
+        }
+      }
+    }
+  }
+}
