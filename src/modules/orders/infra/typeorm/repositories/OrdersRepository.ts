@@ -36,6 +36,12 @@ class OrdersRepository implements IOrderRepository {
 
     return orders;
   }
+
+  async findById(id: string): Promise<Order | null> {
+    const foundedOrder = await this.repository.findOneBy({ id });
+
+    return foundedOrder;
+  }
 }
 
 export { OrdersRepository };
