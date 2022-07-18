@@ -37,10 +37,10 @@ class Order {
   @Column()
   total_price: number;
 
-  @Column()
+  @Column({ type: 'enum', enum: Object.values(PaymentType) })
   payment_type: PaymentType;
 
-  @Column()
+  @Column({ type: 'enum', enum: Object.values(OrderStatus) })
   status: OrderStatus;
 
   @CreateDateColumn()
