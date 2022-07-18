@@ -21,4 +21,4 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerFile));
 app.use(router);
 app.use(errorHandler);
 
-app.listen(3333, () => console.log('working'));
+app.listen(process.env.PORT, () => console.log('working'));
