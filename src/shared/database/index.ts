@@ -29,6 +29,9 @@ const dataSource = new DataSource({
     CreateUsersTable1658068195447,
   ],
   entities: [Coffee, Category, Order, OrderItem, User],
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 export function createConnection(): Promise<DataSource> {
