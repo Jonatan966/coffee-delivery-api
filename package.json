@@ -7,6 +7,9 @@
     "typeorm:migration-run": "yarn typeorm migration:run -d ./src/shared/database/index.ts",
     "heroku-postbuild": "yarn build && yarn typeorm:migration-run"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.0",
