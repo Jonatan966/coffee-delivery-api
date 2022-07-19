@@ -1,1 +1,1 @@
-release: yarn typeorm:migration-run
+release: yarn install && yarn typeorm:migration-run
