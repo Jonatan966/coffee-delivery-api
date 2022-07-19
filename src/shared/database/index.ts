@@ -29,7 +29,7 @@ const dataSource = new DataSource({
     CreateUsersTable1658068195447,
   ],
   entities: [Coffee, Category, Order, OrderItem, User],
-  ssl: {
+  ssl: process.env.NODE_ENV === 'production' && {
     rejectUnauthorized: false,
   },
 });
