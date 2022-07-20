@@ -10,7 +10,7 @@ Esta API tem como objetivo gerenciar os pedidos de uma cafeteria
 - [x] Deve ser capaz de cadastrar uma Categoria
 - [x] Deve ser capaz de cadastrar um Café
 - [x] Deve ser capaz de listar Cafés
-- [] Deve ser capaz de adicionar uma imagem de um Café
+- [ ] Deve ser capaz de adicionar uma imagem de um Café
 - [x] Deve ser capaz de cadastrar um Pedido
 - [x] Deve ser capaz de listar Pedidos
 - [x] Deve ser capaz de visualizar detalhes de um Pedido
