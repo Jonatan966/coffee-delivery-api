@@ -59,6 +59,7 @@
         "tags": ["Category"],
         "summary": "Create a new category",
         "description": "Create a new category",
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -83,6 +84,22 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
                 }
               }
             }
@@ -112,6 +129,7 @@
         "tags": ["Coffee"],
         "summary": "Create a new coffee",
         "description": "Create a new coffee",
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -147,6 +165,22 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -156,6 +190,7 @@
         "tags": ["Coffee"],
         "summary": "Upload a coffee image",
         "description": "Upload a coffee image",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "coffee_id",
@@ -191,6 +226,22 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Coffee"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
                 }
               }
             }
@@ -251,6 +302,22 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -258,6 +325,7 @@
         "tags": ["Order"],
         "summary": "Get all orders",
         "description": "Get all orders",
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
             "description": "A list of orders",
@@ -265,6 +333,22 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
                 }
               }
             }
@@ -277,6 +361,7 @@
         "tags": ["Order"],
         "summary": "Get an order",
         "description": "Get an order",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "order_id",
@@ -298,6 +383,22 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -307,6 +408,7 @@
         "tags": ["Order"],
         "summary": "Update an order status",
         "description": "Update an order status",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "order_id",
@@ -349,6 +451,22 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
                 }
               }
             }
@@ -590,6 +708,13 @@
             "example": "2019-01-01T00:00:00.000Z"
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
