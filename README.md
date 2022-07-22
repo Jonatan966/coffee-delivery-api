@@ -4,6 +4,16 @@
 
 Esta API tem como objetivo gerenciar os pedidos de uma cafeteria
 
+## 🧪 Ferramentas Utilizadas
+
+- NodeJS
+- ExpressJS
+- Typeorm
+- Postgres
+- Multer
+- Tsyringe
+- Swagger
+
 ## 👀 Requisitos
 
 - [x] Deve ser capaz de listar Categorias
